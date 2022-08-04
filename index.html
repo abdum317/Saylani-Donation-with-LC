@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page</title>
+    <style>
+        .form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            width: 15rem;
+            height: 5rem;
+            text-align: center;
+        }
+
+        input {
+            height: 1.5rem;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 5rem;
+        }
+
+        button {
+            width: 8rem;
+            height: 3rem;
+            border-radius: 5rem;
+        }
+
+        button:hover {
+            color: white;
+            background-color: black;
+        }
+        .container{
+            margin-top: 10rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Saylani Donation</h1>
+        <div class="form">
+            <form action="app.js">
+                <label>Username <br><br>
+                    <input type="text" name="Donor-name" id="donor-name">
+                </label>
+                <label>DN number <br><br>
+                    <input type="text" name="DN" id="dn">
+                </label>
+                <label>Amount <br><br>
+                    <input type="text" name="amount" id="amount">
+                </label>
+            </form>
+        </div>
+        <div class="button">
+            <button onclick="DonateNow()">Donate Now</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var userName = document.querySelector("#donor-name");
+        var dnNumber = document.querySelector("#dn");
+        var amount = document.querySelector("#amount");
+        var allArr = [];
+        var totalAmount = 0;
+        var donorInfo;
+
+
+        function DonateNow() {
+            totalAmount = totalAmount + Number(amount.value);
+            donorInfo = new donorName(userName.value , dnNumber.value , amount.value)
+            allArr.push(donorInfo);
+            console.log(donorInfo);
+            console.log(allArr);
+            console.log(totalAmount);
+            localSt();
+            userName.value = "";
+            dnNumber.value = "";
+            amount.value = "";
+        }
+
+
+        function donorName(name, dn, amount) {
+            this.DonorName = name;
+            this.DN = dn;
+            this.Amount = Number(amount);
+        }
+
+        function localSt(){
+            var strinarr =JSON.stringify(allArr);
+            localStorage.setItem("DonorInfo" , strinarr);
+            localStorage.getItem("DonorInfo");
+
+            localStorage.setItem("Total Amount" , totalAmount);
+            localStorage.getItem("Total Amount")
+        }
+
+
+    </script>
+</body>
+
+</html>
